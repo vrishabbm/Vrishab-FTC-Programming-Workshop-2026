@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Frog Force Tele-Op")
-public class FullTeleop extends OpMode {
+@TeleOp(name = "Team Frog Force Tele-Op")
+public class ArmAndClawTeleop extends OpMode {
     DcMotorEx arm;
     Servo leftClaw;
     Servo rightClaw;
