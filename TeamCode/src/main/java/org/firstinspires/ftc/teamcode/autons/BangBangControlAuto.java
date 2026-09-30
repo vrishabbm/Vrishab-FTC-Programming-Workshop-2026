@@ -41,14 +41,14 @@ public class BangBangControlAuto extends LinearOpMode {
 
     private void driveDistance(double distInches) {
         double encoderCount = leftDrive.getCurrentPosition();
-        double initialDistance = ((encoderCount/CPR)/GEAR_RATIO) * WHEEL_RADIUS_INCHES;
+        double initialDistance = ((encoderCount/CPR)/GEAR_RATIO) * 2 * Math.PI * WHEEL_RADIUS_INCHES;
         double goalDistance = initialDistance + distInches;
 
         double error = goalDistance - initialDistance;
 
         while (Math.abs(error) > TOLERANCE_INCHES) {
             // Bang Bang Controller
-            double currentDistance = ((encoderCount/CPR)/GEAR_RATIO) * WHEEL_RADIUS_INCHES;
+            double currentDistance = ((encoderCount/CPR)/GEAR_RATIO) * 2 * Math.PI * WHEEL_RADIUS_INCHES;
             error = goalDistance - currentDistance;
 
             if (error < 0) {
