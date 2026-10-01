@@ -12,6 +12,9 @@ public class ArmAndClawTeleop extends OpMode {
     DcMotorEx arm;
     Servo leftClaw;
     Servo rightClaw;
+    DcMotorEx leftDrive;
+    DcMotorEx rightDrive;
+    final double gamepadStickDeadzone = 0.1;
 
     @Override
     public void init() {
@@ -25,6 +28,15 @@ public class ArmAndClawTeleop extends OpMode {
 
         leftClaw.setDirection(Servo.Direction.REVERSE);
         rightClaw.setDirection(Servo.Direction.FORWARD);
+
+        leftDrive = hardwareMap.get(DcMotorEx.class, "leftDrive");
+        rightDrive = hardwareMap.get(DcMotorEx.class, "rightDrive");
+
+        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        leftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @Override
@@ -49,6 +61,24 @@ public class ArmAndClawTeleop extends OpMode {
             leftClaw.setPosition(0.0);
             rightClaw.setPosition(0.0);
         }
+
+        double leftDrivePower = 0.0;
+        double rightDrivePower = 0.0;
+
+        if (Math.abs(gamepad1.left_stick_y) > gamepadStickDeadzone) {
+            leftDrivePower = -gamepad1.left_stick_y;
+        }  else {
+            leftDrivePower = 0.0;
+        }
+
+        if (Math.abs(gamepad1.right_stick_y) > gamepadStickDeadzone) {
+            rightDrivePower = -gamepad1.right_stick_y;
+        }  else {
+            rightDrivePower = 0.0;
+        }
+
+        leftDrive.setPower(leftDrivePower);
+        rightDrive.setPower(rightDrivePower);
     }
 
     @Override

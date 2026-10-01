@@ -36,11 +36,11 @@ public class Ri1WTeleop extends OpMode {
         pollenGate = hardwareMap.get(Servo.class, "pollenGate");
         shooter = hardwareMap.get(DcMotorEx.class, "shooter");
 
-        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftDrive.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        rightDrive.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         intake.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
